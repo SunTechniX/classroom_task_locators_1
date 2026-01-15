@@ -1,0 +1,79 @@
+{
+  "tasks": [
+    {
+      "id": "task_01",
+      "name": "Задача 1: Поле Full Name на demoqa.com",
+      "file": "task_01.py",
+      "max_score": 20,
+      "tests": [
+        {
+          "name": "Проверка локатора FULL_NAME_INPUT",
+          "input": "",
+          "expected_output": "OK",
+          "comparison_method": "exact",
+          "max_score": 20
+        }
+      ]
+    },
+    {
+      "id": "task_02",
+      "name": "Задача 2: Кнопка Submit на demoqa.com",
+      "file": "task_02.py",
+      "max_score": 20,
+      "tests": [
+        {
+          "name": "Проверка локатора SUBMIT_BUTTON",
+          "input": "",
+          "expected_output": "OK",
+          "comparison_method": "exact",
+          "max_score": 20
+        }
+      ]
+    },
+    {
+      "id": "task_03",
+      "name": "Задача 3: Средняя ссылка Italy на urn.su",
+      "file": "task_03.py",
+      "max_score": 20,
+      "tests": [
+        {
+          "name": "Проверка локатора MIDDLE_ITALY_LINK",
+          "input": "",
+          "expected_output": "OK",
+          "comparison_method": "exact",
+          "max_score": 20
+        }
+      ]
+    },
+    {
+      "id": "task_04",
+      "name": "Задача 4: Чекбокс Cersei на urn.su",
+      "file": "task_04.py",
+      "max_score": 20,
+      "tests": [
+        {
+          "name": "Проверка локатора CERSEI_CHECKBOX",
+          "input": "",
+          "expected_output": "OK",
+          "comparison_method": "exact",
+          "max_score": 20
+        }
+      ]
+    },
+    {
+      "id": "task_05",
+      "name": "Задача 5: Поле логина на users.bugred.ru",
+      "file": "task_05.py",
+      "max_score": 20,
+      "tests": [
+        {
+          "name": "Проверка локатора LOGIN_FIELD",
+          "input": "",
+          "expected_output": "OK",
+          "comparison_method": "exact",
+          "max_score": 20
+        }
+      ]
+    }
+  ]
+}
