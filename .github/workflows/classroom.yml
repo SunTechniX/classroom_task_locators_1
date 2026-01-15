@@ -1,0 +1,68 @@
+name: Autograding Tests
+on:
+  - push
+  - repository_dispatch
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    name: Оценивание заданий
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install chromium
+
+      - name: "[TASK 01] Run tests"
+        id: task_01
+        run: python3 tools/run_task_tests.py task_01
+
+      - name: "[TASK 02] Run tests"
+        id: task_02
+        run: python3 tools/run_task_tests.py task_02
+
+      - name: "[TASK 03] Run tests"
+        id: task_03
+        run: python3 tools/run_task_tests.py task_03
+
+      - name: "[TASK 04] Run tests"
+        id: task_04
+        run: python3 tools/run_task_tests.py task_04
+
+      - name: "[TASK 05] Run tests"
+        id: task_05
+        run: python3 tools/run_task_tests.py task_05
+
+      - name: ✅ Generate Final Summary
+        env:
+          TASK_01_RESULT: ${{ steps.task_01.outputs.result }}
+          TASK_02_RESULT: ${{ steps.task_02.outputs.result }}
+          TASK_03_RESULT: ${{ steps.task_03.outputs.result }}
+          TASK_04_RESULT: ${{ steps.task_04.outputs.result }}
+          TASK_05_RESULT: ${{ steps.task_05.outputs.result }}
+        run: python3 tools/generate_summary.py task_01 task_02 task_03 task_04 task_05
+
+      - name: 📤 Report to GitHub Classroom
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          TASK_01_RESULTS: ${{ steps.task_01.outputs.result }}
+          TASK_02_RESULTS: ${{ steps.task_02.outputs.result }}
+          TASK_03_RESULTS: ${{ steps.task_03.outputs.result }}
+          TASK_04_RESULTS: ${{ steps.task_04.outputs.result }}
+          TASK_05_RESULTS: ${{ steps.task_05.outputs.result }}
+        with:
+          runners: task_01,task_02,task_03,task_04,task_05
